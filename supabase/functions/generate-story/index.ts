@@ -66,9 +66,9 @@ STRICT RULES:
 4. Do NOT use grammar beyond A2.
 5. Keep vocabulary natural but suitable for A2.
 
-After the story, return:
+After the story, return the following in structured JSON:
 1. Spanish story (5 paragraphs)
-2. Description of the grammar rules used in the story
+2. Grammar teaching section: clearly explain the grammar rules used in the story, with examples drawn from the story.
 3. Vocabulary list (Spanish → English)
 4. 5 comprehension questions
 5. List of ALL verbs used with total occurrence count
