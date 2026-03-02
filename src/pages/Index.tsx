@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { supabase } from "@/integrations/supabase/client";
-import { Heart, BookOpen, Loader2, Sparkles, GraduationCap } from "lucide-react";
+import { BookOpen, Loader2, Sparkles, GraduationCap } from "lucide-react";
 import { toast } from "sonner";
 
 interface StoryData {
@@ -54,7 +54,7 @@ const Index = () => {
         <div className="max-w-lg w-full text-center space-y-8">
           <div className="space-y-4">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 mb-4">
-              <Heart className="w-10 h-10 text-accent" />
+              <BookOpen className="w-10 h-10 text-accent" />
             </div>
             <h1 className="text-5xl font-bold text-foreground tracking-tight">
               StoryMate
@@ -106,7 +106,7 @@ const Index = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Heart className="w-6 h-6 text-accent" />
+            <BookOpen className="w-6 h-6 text-accent" />
             <h1 className="text-2xl font-bold text-foreground">StoryMate</h1>
           </div>
           <div className="flex items-center gap-4">
