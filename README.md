@@ -1,56 +1,88 @@
-# Welcome to your Lovable project
+# 🌹 Spanish Story Learning App (MVP)
 
-## Project info
+> **Work in Progress** – Created entirely using AI / LLMs (Lovable)  
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+This is a **Minimal Viable Product (MVP)** web application for learning Spanish through short, engaging stories. The app targets English speakers and focuses on **reading, understanding, and learning grammar/vocabulary**, without interactive story tapping.
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+**URL**: https://sweet-tale-learn.lovable.app
+---
 
-**Use Lovable**
+## 📖 Overview
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+The MVP emphasizes **simplicity, engagement, and meaningful content**. Users read stories, explore grammar and vocabulary explanations, and track learned verbs.  
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Target Users:** English speakers learning Spanish  
+- **Supported Levels:** A1, A2, B1  
+- **Content Themes:** Daily life, travel, work, hobbies, etc.  
+- **Story Length:** 5–15 paragraphs (session-friendly)  
+- **Interaction:** No in-story tapping; grammar & vocabulary in separate section  
+- **Session Length:** 5–10 minutes per story  
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🗺 User Journey / Flow (MVP)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 1️⃣ Entry Point
+- User opens the app  
+- Welcome screen introduces purpose: *learn Spanish through short, interesting stories*  
+- Explains what to expect: level-appropriate content, grammar explanations, new vocabulary  
 
-Follow these steps:
+### 2️⃣ Level Selection
+- User selects their current level: **A1, A2, or B1**  
+- App stores level for story adaptation and grammar/verb explanations  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 3️⃣ Topic Selection
+- App shows a list of topics (daily life, travel, work, hobbies, etc.)  
+- User selects a topic of interest  
+- Optional: App remembers previously chosen topics  
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 4️⃣ Story Generation & Display
+- App fetches AI-generated story/dialog for the chosen topic and level  
+- Story content includes:  
+  - Level-appropriate grammar  
+  - Frequent and new vocabulary  
+  - Natural native phrases  
+- Stories displayed as **plain text**, 5–15 paragraphs  
+- **No interactive in-story tapping**  
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 5️⃣ Grammar, Vocabulary & Verb Section
+- Each story includes a separate explanation section:  
+  - Grammar rules introduced in the story  
+  - New vocabulary / important words with English translations  
+  - Verb conjugations for relevant verbs (current and prior levels)  
+- Users can explore at their own pace  
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### 6️⃣ Content Storage & Reuse
+- Generated stories and explanations are **saved for future reference**  
+- Users can revisit previous stories to review/reinforce learning  
+- Optional: Display simple progress metrics  
 
-**Edit a file directly in GitHub**
+### 7️⃣ Exit Point
+- After reading and exploring grammar/vocabulary, users can:  
+  - Select a new topic to continue  
+  - Exit the app  
+- Minimal friction encourages daily return  
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 8️⃣ Key Notes for MVP Flow
+- Focus: **Reading + Understanding + Optional Grammar/Vocabulary Exploration**  
+- Goal: Users complete a story, explore new words/grammar, and feel confident to continue next session  
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## ✨ Features
 
-## What technologies are used for this project?
+- AI-generated Spanish stories (5–15 paragraphs)  
+- Grammar teaching section for each story  
+- Vocabulary list with English translations  
+- Verb conjugations tracking (per story & cumulative)  
+- Level & topic selection for personalized learning  
+- Content storage for reuse and review  
+- Minimal, clean UI  
+
+---
+
+## 🛠 Tech Stack
 
 This project is built with:
 
@@ -58,16 +90,6 @@ This project is built with:
 - TypeScript
 - React
 - shadcn-ui
-- Tailwind CSS
+- Tailwind CSS 
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
