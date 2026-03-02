@@ -57,10 +57,10 @@ const Index = () => {
               <Heart className="w-10 h-10 text-accent" />
             </div>
             <h1 className="text-5xl font-bold text-foreground tracking-tight">
-              Amor en Español
+              StoryMate
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Learn Spanish through AI-generated romantic stories.
+              Learn Spanish through AI-generated stories.
               <br />
               <span className="text-sm">Level A2 · Romantic Theme</span>
             </p>
@@ -107,7 +107,7 @@ const Index = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Heart className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-foreground">Amor en Español</h1>
+            <h1 className="text-2xl font-bold text-foreground">StoryMate</h1>
           </div>
           <div className="flex items-center gap-4">
             {totalVerbs > 0 && (
