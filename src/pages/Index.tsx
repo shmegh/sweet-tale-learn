@@ -57,7 +57,7 @@ const Index = () => {
               <BookOpen className="w-10 h-10 text-accent" />
             </div>
             <h1 className="text-5xl font-bold text-foreground tracking-tight">
-              StoryMate
+              SweetTale Learn
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Learn Spanish through AI-generated stories.
@@ -107,7 +107,7 @@ const Index = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <BookOpen className="w-6 h-6 text-accent" />
-            <h1 className="text-2xl font-bold text-foreground">StoryMate</h1>
+            <h1 className="text-2xl font-bold text-foreground">SweetTale Learn</h1>
           </div>
           <div className="flex items-center gap-4">
             {totalVerbs > 0 && (
