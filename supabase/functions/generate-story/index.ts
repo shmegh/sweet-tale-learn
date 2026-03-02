@@ -58,24 +58,34 @@ Grammar allowed:
 - Hay que / tener que / acabar de + infinitive
 
 STRICT RULES:
-1. Use ONLY verbs from the learned verbs list and allowed verbs list below.
+1. Use ONLY verbs from:
+   - Learned verbs list
+   - Allowed verbs list (500-common-verbs dataset)
 2. Reuse learned verbs multiple times.
-3. Introduce 3–5 new verbs from the allowed verbs list.
+3. Introduce 3–5 new verbs from allowed verbs list.
 4. Do NOT use grammar beyond A2.
 5. Keep vocabulary natural but suitable for A2.
+
+After the story, return:
+1. Spanish story (5 paragraphs)
+2. Description of the grammar rules used in the story
+3. Vocabulary list (Spanish → English)
+4. 5 comprehension questions
+5. List of ALL verbs used with total occurrence count
+6. Updated learned verbs list with incremented counts
 
 Already learned verbs list with usage counts:
 ${learnedVerbsList || "No verbs learned yet."}
 
-Allowed verbs list:
+Allowed verbs list (500-common-verbs dataset):
 ${allowedVerbsList}`;
 
     const userPrompt = `Generate a romantic story now. Return ONLY a valid JSON object with these exact keys:
 {
   "story_paragraphs": ["paragraph1", "paragraph2", "paragraph3", "paragraph4", "paragraph5"],
+  "grammar_description": "A description of the grammar rules used in the story",
   "vocabulary": [{"spanish": "word", "english": "meaning"}],
   "comprehension_questions": ["q1", "q2", "q3", "q4", "q5"],
-  "grammar_questions": ["q1", "q2", "q3"],
   "verbs_used": [{"infinitive": "verb", "count": 1}]
 }`;
 
@@ -159,7 +169,7 @@ ${allowedVerbsList}`;
         story_text: storyText,
         vocabulary_json: parsed.vocabulary,
         comprehension_questions_json: parsed.comprehension_questions,
-        grammar_questions_json: parsed.grammar_questions,
+        grammar_questions_json: parsed.grammar_description,
       })
       .select()
       .single();
@@ -181,7 +191,7 @@ ${allowedVerbsList}`;
         paragraphs: parsed.story_paragraphs,
         vocabulary: parsed.vocabulary,
         comprehension_questions: parsed.comprehension_questions,
-        grammar_questions: parsed.grammar_questions,
+        grammar_description: parsed.grammar_description,
       },
       total_verbs_learned: totalVerbs || 0,
     }), {
