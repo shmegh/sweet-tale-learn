@@ -11,7 +11,7 @@ interface StoryData {
   paragraphs: string[];
   vocabulary: { spanish: string; english: string }[];
   comprehension_questions: string[];
-  grammar_description: string;
+  grammar_rules_used: string;
 }
 
 const Index = () => {
@@ -186,7 +186,7 @@ const Index = () => {
             <CardTitle className="text-lg">📝 Gramática</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-foreground leading-relaxed">{story.grammar_description}</p>
+            <p className="text-foreground leading-relaxed">{story.grammar_rules_used}</p>
           </CardContent>
         </Card>
 

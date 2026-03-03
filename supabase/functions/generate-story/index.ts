@@ -29,6 +29,12 @@ serve(async (req) => {
       .from("verbs_master")
       .select("id, infinitive, english_meaning");
 
+    // 3. Fetch grammar rules names
+    const { data: grammarRules } = await supabase
+      .from("grammar_rules")
+      .select("name");
+    const gramList = (grammarRules || []).map((r: any) => r.name).join(", ");
+
     // 3. Build learned verbs string
     const learnedVerbsList = (learnedVerbs || [])
       .map((lv: any) => `${lv.verbs_master.infinitive} (${lv.verbs_master.english_meaning}) - used ${lv.usage_count} times`)
@@ -43,35 +49,38 @@ serve(async (req) => {
     const systemPrompt = `You are a Spanish language pedagogy assistant.
 
 Task:
+
 Write a 5-paragraph romantic story in Spanish for A2 learners.
 
 Grammar allowed:
-- Present tense
-- Pretérito perfecto
-- Pretérito indefinido
-- Imperfecto (basic)
-- Gustar and similar verbs
-- Hay / había
-- Comparatives
-- Personal 'a'
-- Por vs para
-- Hay que / tener que / acabar de + infinitive
+${gramList}
 
 STRICT RULES:
+
 1. Use ONLY verbs from:
    - Learned verbs list
    - Allowed verbs list (500-common-verbs dataset)
+
 2. Reuse learned verbs multiple times.
+
 3. Introduce 3–5 new verbs from allowed verbs list.
+
 4. Do NOT use grammar beyond A2.
+
 5. Keep vocabulary natural but suitable for A2.
 
 After the story, return the following in structured JSON:
+
 1. Spanish story (5 paragraphs)
-2. Grammar teaching section: clearly explain the grammar rules used in the story, with examples drawn from the story.
+
+2. List of grammar rules used in the story from [${gramList}] in a comma separated format
+
 3. Vocabulary list (Spanish → English)
+
 4. 5 comprehension questions
+
 5. List of ALL verbs used with total occurrence count
+
 6. Updated learned verbs list with incremented counts
 
 Already learned verbs list with usage counts:
@@ -83,7 +92,7 @@ ${allowedVerbsList}`;
     const userPrompt = `Generate a romantic story now. Return ONLY a valid JSON object with these exact keys:
 {
   "story_paragraphs": ["paragraph1", "paragraph2", "paragraph3", "paragraph4", "paragraph5"],
-  "grammar_description": "A description of the grammar rules used in the story",
+  "grammar_rules_used": "rule1, rule2, rule3",
   "vocabulary": [{"spanish": "word", "english": "meaning"}],
   "comprehension_questions": ["q1", "q2", "q3", "q4", "q5"],
   "verbs_used": [{"infinitive": "verb", "count": 1}]
@@ -169,7 +178,7 @@ ${allowedVerbsList}`;
         story_text: storyText,
         vocabulary_json: parsed.vocabulary,
         comprehension_questions_json: parsed.comprehension_questions,
-        grammar_questions_json: parsed.grammar_description,
+        grammar_questions_json: parsed.grammar_rules_used,
       })
       .select()
       .single();
@@ -191,7 +200,7 @@ ${allowedVerbsList}`;
         paragraphs: parsed.story_paragraphs,
         vocabulary: parsed.vocabulary,
         comprehension_questions: parsed.comprehension_questions,
-        grammar_description: parsed.grammar_description,
+        grammar_rules_used: parsed.grammar_rules_used,
       },
       total_verbs_learned: totalVerbs || 0,
     }), {
