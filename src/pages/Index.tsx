@@ -131,12 +131,6 @@ const Index = () => {
             </div>
           </div>
 
-          {totalVerbs > 0 && (
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <GraduationCap className="w-4 h-4" />
-              <span>{totalVerbs} verbs learned so far</span>
-            </div>
-          )}
 
           <Button
             onClick={generateStory}
@@ -174,21 +168,13 @@ const Index = () => {
             <BookOpen className="w-6 h-6 text-accent" />
             <h1 className="text-2xl font-bold text-foreground">SweetTale Learn</h1>
           </div>
-          <div className="flex items-center gap-4">
-            {totalVerbs > 0 && (
-              <span className="text-sm text-muted-foreground flex items-center gap-1">
-                <GraduationCap className="w-4 h-4" />
-                {totalVerbs} verbs
-              </span>
-            )}
-            <Button
-              onClick={() => { setStory(null); setGrammarRules([]); }}
-              variant="outline"
-              size="sm"
-            >
-              Back
-            </Button>
-          </div>
+          <Button
+            onClick={() => { setStory(null); setGrammarRules([]); }}
+            variant="outline"
+            size="sm"
+          >
+            Back
+          </Button>
         </div>
 
         {/* Story */}
