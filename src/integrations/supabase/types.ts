@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      grammar_rules: {
+        Row: {
+          description: string
+          id: string
+          name: string
+          sample: string
+        }
+        Insert: {
+          description: string
+          id?: string
+          name: string
+          sample: string
+        }
+        Update: {
+          description?: string
+          id?: string
+          name?: string
+          sample?: string
+        }
+        Relationships: []
+      }
       stories: {
         Row: {
           comprehension_questions_json: Json | null
