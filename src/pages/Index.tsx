@@ -4,6 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { supabase } from "@/integrations/supabase/client";
 import { BookOpen, Loader2, Sparkles, GraduationCap } from "lucide-react";
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 
 interface StoryData {
@@ -25,6 +28,8 @@ const Index = () => {
   const [grammarRules, setGrammarRules] = useState<GrammarRule[]>([]);
   const [totalVerbs, setTotalVerbs] = useState<number>(0);
   const [loading, setLoading] = useState(false);
+  const [level, setLevel] = useState("A2");
+  const [theme, setTheme] = useState("Romance");
 
   const generateStory = async () => {
     setLoading(true);
@@ -89,9 +94,41 @@ const Index = () => {
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Learn Spanish through AI-generated stories.
-              <br />
-              <span className="text-sm">Level A2 · Romantic Theme</span>
             </p>
+          </div>
+
+          {/* Filters */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="space-y-1.5 text-left">
+              <label className="text-sm font-medium text-muted-foreground">Level</label>
+              <Select value={level} onValueChange={setLevel}>
+                <SelectTrigger className="w-40">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {["A1", "A2", "B1", "B2", "C1"].map((l) => (
+                    <SelectItem key={l} value={l} disabled={l !== "A2"}>
+                      {l}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1.5 text-left">
+              <label className="text-sm font-medium text-muted-foreground">Story Theme</label>
+              <Select value={theme} onValueChange={setTheme}>
+                <SelectTrigger className="w-48">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {["Fantasy", "Thriller", "Romance", "Science Fiction", "Historical"].map((t) => (
+                    <SelectItem key={t} value={t}>
+                      {t}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           {totalVerbs > 0 && (
@@ -115,7 +152,7 @@ const Index = () => {
             ) : (
               <>
                 <Sparkles className="w-5 h-5" />
-                Generate Romantic Story
+                Generate Story
               </>
             )}
           </Button>
