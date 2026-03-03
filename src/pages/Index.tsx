@@ -14,8 +14,15 @@ interface StoryData {
   grammar_rules_used: string;
 }
 
+interface GrammarRule {
+  name: string;
+  description: string;
+  sample: string;
+}
+
 const Index = () => {
   const [story, setStory] = useState<StoryData | null>(null);
+  const [grammarRules, setGrammarRules] = useState<GrammarRule[]>([]);
   const [totalVerbs, setTotalVerbs] = useState<number>(0);
   const [loading, setLoading] = useState(false);
 
@@ -39,6 +46,27 @@ const Index = () => {
 
       setStory(data.story);
       setTotalVerbs(data.total_verbs_learned);
+
+      // Fetch grammar rules matching the AI's used rules
+      const usedNames = (data.story.grammar_rules_used || "")
+        .split(",")
+        .map((n: string) => n.trim())
+        .filter(Boolean);
+
+      if (usedNames.length > 0) {
+        const { data: rules } = await supabase
+          .from("grammar_rules")
+          .select("name, description, sample")
+          .in("name", usedNames);
+        // Preserve the order from AI response
+        const ordered = usedNames
+          .map((n: string) => (rules || []).find((r) => r.name === n))
+          .filter(Boolean) as GrammarRule[];
+        setGrammarRules(ordered);
+      } else {
+        setGrammarRules([]);
+      }
+
       toast.success("¡Historia generada!");
     } catch (e) {
       console.error("Error:", e);
@@ -180,15 +208,23 @@ const Index = () => {
 
         <Separator />
 
-        {/* Grammar Description */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">📝 Gramática</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-foreground leading-relaxed">{story.grammar_rules_used}</p>
-          </CardContent>
-        </Card>
+        {/* Grammar Rules Used */}
+        {grammarRules.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">📝 Gramática</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {grammarRules.map((rule, i) => (
+                <div key={i} className="space-y-1">
+                  <h3 className="font-semibold text-foreground">{i + 1}. {rule.name}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{rule.description}</p>
+                  <p className="text-foreground italic text-sm">"{rule.sample}"</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Generate Another */}
         <div className="text-center py-6">
