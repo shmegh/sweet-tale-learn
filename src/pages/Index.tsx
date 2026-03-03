@@ -182,11 +182,11 @@ const Index = () => {
               </span>
             )}
             <Button
-              onClick={() => { setStory(null); }}
+              onClick={() => { setStory(null); setGrammarRules([]); }}
               variant="outline"
               size="sm"
             >
-              New Story
+              Back
             </Button>
           </div>
         </div>
