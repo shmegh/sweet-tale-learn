@@ -12,6 +12,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
+    const { theme = "romantic" } = await req.json().catch(() => ({}));
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const lovableApiKey = Deno.env.get("LOVABLE_API_KEY")!;
@@ -50,7 +52,7 @@ serve(async (req) => {
 
 Task:
 
-Write a 5-paragraph romantic story in Spanish for A2 learners.
+Write a 5-paragraph story in ${theme} genre in Spanish for A2 learners.
 
 Grammar allowed:
 ${gramList}
@@ -174,7 +176,7 @@ ${allowedVerbsList}`;
       .from("stories")
       .insert({
         user_id: MOCK_USER_ID,
-        theme: "romantic",
+        theme: theme,
         story_text: storyText,
         vocabulary_json: parsed.vocabulary,
         comprehension_questions_json: parsed.comprehension_questions,
