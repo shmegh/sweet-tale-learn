@@ -1,0 +1,1 @@
+ALTER TABLE public.grammar_rules ADD COLUMN level text NOT NULL DEFAULT 'A2';
