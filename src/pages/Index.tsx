@@ -35,7 +35,7 @@ const Index = () => {
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("generate-story", {
-        body: { theme: theme.toLowerCase() },
+        body: { theme: theme.toLowerCase(), level },
       });
 
       if (error) {
