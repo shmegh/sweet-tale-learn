@@ -1,6 +1,6 @@
 # 🌹 Spanish Story Learning App (MVP)
 
-> **Work in Progress** – Created entirely using AI / LLMs (Lovable)  IN LESS THAN A DAY
+> **Work in Progress** – Created entirely using AI / LLMs (ChatGPT & Lovable)  IN LESS THAN A DAY
 
 This is a **Minimal Viable Product (MVP)** web application for learning Spanish through short, engaging stories. The app targets English speakers and focuses on **reading, understanding, and learning grammar/vocabulary**, without interactive story tapping.
 
