@@ -29,7 +29,7 @@ const Index = () => {
   const [totalVerbs, setTotalVerbs] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [level, setLevel] = useState("A2");
-  const [theme, setTheme] = useState("Romance");
+  const [theme, setTheme] = useState("Daily Life");
 
   const generateStory = async () => {
     setLoading(true);
@@ -121,7 +121,7 @@ const Index = () => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {["Fantasy", "Thriller", "Romance", "Science Fiction", "Historical"].map((t) => (
+                  {["Daily Life", "Travel", "Work", "Hobbies"].map((t) => (
                     <SelectItem key={t} value={t}>
                       {t}
                     </SelectItem>
