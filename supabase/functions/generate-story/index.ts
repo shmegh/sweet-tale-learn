@@ -12,7 +12,15 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { theme = "romantic" } = await req.json().catch(() => ({}));
+    const { theme = "romantic", level = "A2" } = await req.json().catch(() => ({}));
+
+    // Determine which levels to include based on selected level
+    const levelMap: Record<string, string[]> = {
+      "A1": ["A1"],
+      "A2": ["A1", "A2"],
+      "B1": ["A1", "A2", "B1"],
+    };
+    const allowedLevels = levelMap[level] || ["A1", "A2"];
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -31,10 +39,11 @@ serve(async (req) => {
       .from("verbs_master")
       .select("id, infinitive, english_meaning");
 
-    // 3. Fetch grammar rules names
+    // 3. Fetch grammar rules filtered by level
     const { data: grammarRules } = await supabase
       .from("grammar_rules")
-      .select("name");
+      .select("name")
+      .in("level", allowedLevels);
     const gramList = (grammarRules || []).map((r: any) => r.name).join(", ");
 
     // 3. Build learned verbs string
