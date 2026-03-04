@@ -28,7 +28,7 @@ const Index = () => {
   const [grammarRules, setGrammarRules] = useState<GrammarRule[]>([]);
   const [totalVerbs, setTotalVerbs] = useState<number>(0);
   const [loading, setLoading] = useState(false);
-  const [level, setLevel] = useState("A2");
+  const [level, setLevel] = useState("A1");
   const [theme, setTheme] = useState("Daily Life");
 
   const generateStory = async () => {
@@ -106,8 +106,8 @@ const Index = () => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {["A1", "A2", "B1", "B2", "C1"].map((l) => (
-                    <SelectItem key={l} value={l} disabled={l !== "A2"}>
+                  {["A1", "A2", "B1"].map((l) => (
+                    <SelectItem key={l} value={l}>
                       {l}
                     </SelectItem>
                   ))}
