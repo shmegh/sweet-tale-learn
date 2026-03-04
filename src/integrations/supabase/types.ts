@@ -18,18 +18,21 @@ export type Database = {
         Row: {
           description: string
           id: string
+          level: string
           name: string
           sample: string
         }
         Insert: {
           description: string
           id?: string
+          level?: string
           name: string
           sample: string
         }
         Update: {
           description?: string
           id?: string
+          level?: string
           name?: string
           sample?: string
         }
