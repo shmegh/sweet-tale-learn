@@ -184,6 +184,9 @@ const Index = () => {
               <BookOpen className="w-5 h-5 text-primary" />
               La Historia
             </CardTitle>
+            <p className="text-sm text-muted-foreground">
+              A story about <span className="font-medium text-foreground">{theme}</span> at <span className="font-medium text-foreground">{level}</span> level
+            </p>
           </CardHeader>
           <CardContent className="space-y-4">
             {story.paragraphs.map((p, i) => (
